@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import TodoItem from './TodoItem'
 import dataTasks from './tasks.json';
 import './TodoList.css'
+import { v4 as uuidv4 } from 'uuid';
 
 export class TodoList extends Component {
 
@@ -30,7 +31,7 @@ export class TodoList extends Component {
 
   paintTasks = () => {
     //leer estado de tasks y pintarlos. Para ello: recorrer tasks con map
-    return this.state.tasks.map((task, i)=><TodoItem data={task}  key = {i} remove={() => this.removeTask(i)} />)
+    return this.state.tasks.map((task, i)=><TodoItem data={task}  key = {uuidv4()} remove={() => this.removeTask(i)} />)
   }
 
   removeAllTasks = () => this.setState({tasks:[]})
