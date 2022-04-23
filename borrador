@@ -1,0 +1,9 @@
+header
+main
+    todolist
+        todoitem
+            Botón BORRAR, asociado a cada tarea, para poder borrar de manera independiente
+        Botón CLEAR para borrar todas las tareas
+        Botón para hacer RESET de las tareas
+footer
+
