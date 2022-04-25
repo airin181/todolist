@@ -10,7 +10,9 @@ export class TodoList extends Component {
     super(props)
 
     this.state = {
-      tasks: dataTasks, //si se llama arriba solo tasks aquí podemos poner solo tasks para abreviar
+      tasks: dataTasks,
+      input: "" //=falsy
+      //si se llama arriba solo tasks aquí podemos poner solo tasks para abreviar
     }
   }
 
@@ -23,9 +25,10 @@ export class TodoList extends Component {
     const newTask = {task} //primero formo el objeto y luego se lo chuto al estado
 
     //Añadir al estado cakes el nuevo Cake
-    this.setState({tasks: [...this.state.tasks, newTask]}) //aquí se está usando un Spread Operator
+    this.setState({tasks: [newTask,...this.state.tasks]}) //aquí se está usando un Spread Operator
 
     event.target.task.value = "";
+    this.setState({input:""})
 
   }
 
@@ -46,19 +49,27 @@ export class TodoList extends Component {
     this.setState({tasks:remainingTasks});
 }
 
+  showAdd = (event) => {
+    this.setState({input: event})
+  }
+
   render() {
     return (<div className="div-container">
       <h1>TO DO LIST</h1>
+
       <form onSubmit={this.addTask} className="form">
         <label htmlFor="task">Task description:</label>
-        <input type="text" name="task"id="task"/>
-        <input type="submit" value="Add"/>
+        <input type="text" name="task" id="task" onChange={e => this.showAdd(e.target.value)}/>
+       
+        {this.state.input? <input type="submit" value="Add" className="add"/> : ""}
+
+        
       </form>
 
       {this.paintTasks()}
       <div className="div-buttons">
-      <button onClick={this.removeAllTasks}>Delete all</button>
-      <button onClick={this.resetTasks}>Reset</button>
+        <button onClick={this.removeAllTasks}>Delete all</button>
+        <button onClick={this.resetTasks}>Reset</button>
       </div>
 
     </div>);

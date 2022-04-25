@@ -24,7 +24,7 @@
     justify-content: center;
 }
 
-.form input[type="submit"]{
+.add{
     background-color: #51e851;
     border-style: none;
     margin-left: 2px;
